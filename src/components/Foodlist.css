@@ -1,0 +1,11 @@
+.container {
+    display: flex;
+}
+
+.list {
+    text-align: center;
+    flex-grow: 1;
+}
+.list h1 {
+    color: #6cd6cc;
+}
