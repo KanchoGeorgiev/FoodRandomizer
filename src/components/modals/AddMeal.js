@@ -1,15 +1,41 @@
 import Modal from "./Modal";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import FoodContext from "../../context/foodContext";
 import "./AddMeal.css";
+
 const AddMeal = ({ closeModal, type }) => {
     const [meal, setMeal] = useState("");
+    const { fetchMeals } = useContext(FoodContext);
     const mealChangeHandler = (e) => {
         setMeal(e.target.value);
     };
-    const submitMealHandler = (e) => {
+    const submitMealHandler = async (e) => {
         e.preventDefault();
-        console.log(meal);
-        closeModal();
+        if (meal.length > 0) {
+            const mealData = {
+                name: meal,
+                type,
+            };
+            const response = await fetch(
+                "https://food-randomizer-f306e-default-rtdb.europe-west1.firebasedatabase.app/foodData.json",
+                {
+                    method: "POST",
+                    body: JSON.stringify(mealData),
+                    headers: {
+                        "Content-Type": "aplicatin/json",
+                    },
+                }
+            );
+            if (response.ok) {
+                console.log("Succsess");
+            } else {
+                console.log("Could Not Post");
+            }
+            fetchMeals();
+            closeModal();
+        } else {
+            alert("Need to Add Data");
+        }
     };
     return (
         <Modal>

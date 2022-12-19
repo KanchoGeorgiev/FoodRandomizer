@@ -1,12 +1,18 @@
 import React from "react";
-import "./FoodMenu.css"
+import "./FoodMenu.css";
 
-const FoodMenu = () => {
+const FoodMenu = ({ items }) => {
     return (
         <div className="food-list">
-            <ol>
-                <li>Formget Online Form Builder Create Online</li>
-            </ol>
+            {!items && <div>No Items</div>}
+            {items && (
+                <ol>
+                    {" "}
+                    {items.map((item) => {
+                        return <li key={item.id}>{item.name}</li>;
+                    })}
+                </ol>
+            )}
         </div>
     );
 };
