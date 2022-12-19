@@ -3,9 +3,12 @@ import { createContext, useState } from "react";
 const FoodContext = createContext({
     foodData: [],
     fetchMeals: () => {},
+    modalState: {},
+    setModalState: () => {},
 });
 
 export const FoodContextProvider = ({ children }) => {
+    
     const [foodData, setFoodData] = useState([]);
     const fetchMeals = async () => {
         const result = await fetch(
@@ -28,7 +31,9 @@ export const FoodContextProvider = ({ children }) => {
     };
 
     return (
-        <FoodContext.Provider value={{ foodData, fetchMeals }}>
+        <FoodContext.Provider
+            value={{ foodData, fetchMeals}}
+        >
             {children}
         </FoodContext.Provider>
     );

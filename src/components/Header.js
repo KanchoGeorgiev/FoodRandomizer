@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Header.css";
+import ModalContext from "../context/modalContext";
 
-const Header = ({ openModal }) => {
+const Header = () => {
+    const { openModal } = useContext(ModalContext);
     return (
         <header className="header">
             <div className="name">Food Randomizer</div>

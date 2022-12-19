@@ -13,7 +13,7 @@
     width: 90%;
 }
 .meal-form div {
-    padding: 0 100px 0 100px;
+    margin: auto;
 }
 .meal-form button {
     font-size: 1rem;
@@ -41,4 +41,10 @@
     animation: colorChange 500ms;
     background-color: white;
     color: #6cd6cc;
+}
+
+.meal-form p {
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
 }

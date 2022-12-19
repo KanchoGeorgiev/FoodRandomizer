@@ -2,31 +2,16 @@ import FoodList from "./components/FoodList";
 import Header from "./components/Header";
 import AddMeal from "./components/modals/AddMeal";
 import RandomizeMeal from "./components/modals/RandomizeMeal";
-import { useState } from "react";
+import { useContext } from "react";
+import ModalContext from "./context/modalContext";
 import { FoodContextProvider } from "./context/foodContext";
 const App = () => {
-    const [modalState, setModalState] = useState({
-        isOpen: false,
-        type: 0,
-        randomize: false,
-    });
-
-    const openModal = (type, randomizeState) => {
-        setModalState({ isOpen: true, type, randomize: randomizeState });
-    };
-
-    const closeModal = () => {
-        setModalState({ isOpen: false, type: 0, randomize: false });
-    };
+    const { modalState } = useContext(ModalContext);
     return (
         <FoodContextProvider>
-            <Header openModal={openModal} />
-            {modalState.isOpen && !modalState.randomize && (
-                <AddMeal closeModal={closeModal} type={modalState.type} />
-            )}
-            {modalState.isOpen && modalState.randomize && (
-                <RandomizeMeal closeModal={closeModal} type={modalState.type} />
-            )}
+            <Header />
+            {modalState.isOpen && !modalState.randomize && <AddMeal />}
+            {modalState.isOpen && modalState.randomize && <RandomizeMeal />}
             <FoodList />
         </FoodContextProvider>
     );

@@ -2,10 +2,13 @@ import Modal from "./Modal";
 import { useState, useContext } from "react";
 import FoodContext from "../../context/foodContext";
 import "./AddMeal.css";
+import ModalContext from "../../context/modalContext";
 
-const AddMeal = ({ closeModal, type }) => {
+const AddMeal = () => {
     const [meal, setMeal] = useState("");
     const { fetchMeals } = useContext(FoodContext);
+    const { modalState, closeModal } = useContext(ModalContext);
+    const { type } = modalState;
     const mealChangeHandler = (e) => {
         setMeal(e.target.value);
     };

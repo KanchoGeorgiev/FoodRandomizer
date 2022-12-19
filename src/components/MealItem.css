@@ -46,4 +46,5 @@
     overflow: hidden;
     content: counter(li-counter);
     counter-increment: li-counter;
+
 }
